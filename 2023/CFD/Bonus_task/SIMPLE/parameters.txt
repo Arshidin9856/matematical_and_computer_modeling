@@ -1,0 +1,21 @@
+T,N,M : number of points (T iteration limit by time)
+dt,dx,dy : step size
+a,b : lentgh and widtgh of inner wall
+t : current iteration
+Steady : bool value given for Steady state of U Velocity
+U,V,P : used for find U_star,V_star, values at t-1 iteration 
+U_star,V_star : temporary Velocity
+rhs : right side component of Poisson equation 
+stead, const : values to stop solving Poisson equation
+pn : Pressure to set future P value
+U_next,V_next : my future values of Velocity
+
+Functions:
+Subs : Goes by every element and return True if not Steady
+central_diff_x : takes matrix , returns its aproximation in inner values 
+central_diff_y : takes matrix , returns its aproximation in inner values 
+laplace : takes matrix , returns its aproximation in inner values 
+
+New parameters in Simple method / other are same
+P_star : guessed value at 0 iter, then it's equal to P_next
+P_next : value after relaxsation 

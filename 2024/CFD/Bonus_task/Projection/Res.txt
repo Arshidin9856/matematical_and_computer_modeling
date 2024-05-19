@@ -1,0 +1,55 @@
+Solves the equation of interior fluid motion over a step.
+This will simulate the inflow behavior into the pipe and the
+boundary layer developing over time and space as well as the vortex
+that is being created right after the step. The system of equations
+is solved by Chorin`s Projection method and SIMPLE method.
+
+u:  Velocity x component
+v:  Velocity y component
+p:  Pressure
+meu:  Kinematic Viscosity
+rho:  Density (here =1)
+t:  Time
+Re: Reynolds number (Re = 100 is equivalent to meu = 0.01) 
+--------
+
+Initial
+
+
+                        wall: u=0, v=0
+        +-----------------------------------------------+
+ inflow |  -->      -->       -->        -->      -->   |
+ u = 1  |                                               | outflow
+ v = 0  |  -->      -->       -->        -->      -->   | ∂u/∂x = 0
+        +--------------+                                | ∂v/∂x = 0
+        |//// step ////|                                |
+        +-----------------------------------------------+
+                        wall: u=0, v=0                       
+
+--------
+
+Expected Outcome
+
+        +-----------------------------------------------+
+        | --->     ->         ->  🔄      ->      ->    |
+        | --->     ---->    ⋱                           |
+        | --->     ->         --->       --->    --->   |
+        +--------------+    ⋱                           |
+        |//// step ////| 🔄   ->         ->      ->     |
+        +-----------------------------------------------+
+
+Above the step, the flow is developing the Hagen-Poiseuille
+profile, which is characteristic for pipe flow.
+
+After the step, the flow adjusts to be over the entire 
+crosssection of the pipe and develops the parabolic profile
+over the wider diameter.
+
+Towards the end of the domain, the flow is fully developed
+and adheres to the outflow boundary condition.
+
+The 🔄 indicates spot, in which vortices develop depending
+on the investigated Reynolds Number.
+
+5) Численный алгоритм 
+
